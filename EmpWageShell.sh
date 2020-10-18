@@ -9,6 +9,9 @@ numberOfWorkingDaysInMonth=20
 maxHoursInMonth=100
 totalEmpHours=0
 totalWorkingDays=0
+   function working_hours(){
+      totalEmpHours=$((totalEmpHours+working_hours))
+}
    	while [[ $totalEmpHours -le $maxHoursInMonth && $totalWorkingDays -lt $numberOfWorkingDaysInMonth ]]
    	do
     		((totalWorkingDays++))
@@ -24,8 +27,11 @@ totalWorkingDays=0
 			echo "Employee Absent"
 			working_hours=0
 			esac
-		totalEmpHours=$((totalEmpHours+working_hours))
+		working_hours
+		#totalEmpHours=$((totalEmpHours+working_hours))
 		echo "Day: $totalWorkingDays EmpHours: $working_hours"
    	done
 		wagePerMonth=$((totalEmpHours*wagePerHour))
 		echo "Employee Wage per month is $wagePerMonth"
+
+
