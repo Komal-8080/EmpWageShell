@@ -10,12 +10,14 @@ maxHoursInMonth=100
 totalEmpHours=0
 totalWorkingDays=0
    function working_hours(){
+      dailyEmpWage=$((working_hours*wagePerHour))
       totalEmpHours=$((totalEmpHours+working_hours))
 }
    	while [[ $totalEmpHours -le $maxHoursInMonth && $totalWorkingDays -lt $numberOfWorkingDaysInMonth ]]
    	do
     		((totalWorkingDays++))
     		empCheck=$((RANDOM%3))
+
 			case $empCheck in
 			2)
 			echo "Employee Present"
@@ -27,8 +29,9 @@ totalWorkingDays=0
 			echo "Employee Absent"
 			working_hours=0
 			esac
+		
+		echo "Today's earning is $dailyEmpWage"
 		working_hours
-		#totalEmpHours=$((totalEmpHours+working_hours))
 		echo "Day: $totalWorkingDays EmpHours: $working_hours"
    	done
 		wagePerMonth=$((totalEmpHours*wagePerHour))
